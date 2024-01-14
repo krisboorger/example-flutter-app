@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+        docker { image 'mobiledevops/flutter-sdk-image:3.16.4' }
+    }
     environment {
         FOO = 'bar'
     }
