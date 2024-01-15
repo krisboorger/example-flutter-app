@@ -1,13 +1,14 @@
 pipeline {
     agent {
         docker {
-            image 'krisboorger/flutter-sdk:0.4'
+            image 'krisboorger/flutter-sdk:0.5'
             reuseNode true
             args '-u root'
         }
     }
     environment {
         FLUTTER_BIN = '/home/user/flutter_sdk/flutter/bin/flutter'
+        ANDROID_SDK_ROOT = '/home/user/android_sdk'
     }
     stages {
         stage('setup') {
@@ -28,7 +29,7 @@ pipeline {
         }
         stage('build') {
             steps {
-                sh "echo building..."
+                sh "$FLUTTER_BIN build apk --split-per-abi"
             }
         }
     }
