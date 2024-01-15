@@ -9,6 +9,7 @@ pipeline {
     environment {
         FLUTTER_BIN = '/home/user/flutter_sdk/flutter/bin/flutter'
         ANDROID_SDK_ROOT = '/home/user/android_sdk'
+        ARTIFACTS_PATH = 'build/app/outputs/flutter-apk/*.apk'
     }
     stages {
         stage('setup') {
@@ -31,6 +32,11 @@ pipeline {
             steps {
                 sh "$FLUTTER_BIN build apk --split-per-abi"
             }
+        }
+    }
+    post {
+        always {
+            archiveArtifacts artifacts: "$ARTIFACTS_PATH", fingerprint: true
         }
     }
 }
