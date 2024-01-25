@@ -21,7 +21,7 @@ class ImageSwitcherState extends State<ImageSwitcher> {
         children: [
           Positioned.fill(
             child: Image.asset(
-              _isFirstImage ? 'images/image1.jpg' : 'images/image2.jpg',
+              _isFirstImage ? 'assets/images/image1.png' : 'assets/images/image2.png',
               fit: BoxFit.cover,
             ),
           ),
